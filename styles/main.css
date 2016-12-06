@@ -63,19 +63,23 @@ body {
     max-width: 64rem;
 }
 
+.container.narrow {
+    max-width: 56rem;
+}
+
 @media (min-width: 640px) {
     html { font-size: 112% }
     
     .column {
         float: left;
-        padding-left: 1 rem;
-        padding-right: 1 rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
     .column.full {width: 100%;}
     .column.two-thirds {width: 66.7%;}
     .column.half {width: 50%;}
     .column.third {width: 33.3%;}
-    .colomn.fourth {width: 25%;}
+    .column.fourth {width: 25%;}
     .column.flow-opposite { float: right }
 }
 
