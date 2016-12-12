@@ -28,6 +28,20 @@ var albumMarconi = {
      ]
  };
 
+var albumBologna = {
+    title: 'The Mystery',
+    artist: 'Bologna',
+    label: '"Meat?"',
+    year: '1349',
+    albumArtUrl: 'assets/images/album_covers/19.png',
+    songs: [
+        { title: 'Feet of the Pig', duration: '1:01' },
+        { title: 'Intestine Jacket', duration: '5:01' },
+        { title: 'Is that an olive?', duration: '3:21'},
+        { title: 'Ballad of Oscar Meyer', duration: '4:20'}
+    ]
+}
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -39,6 +53,8 @@ var createSongRow = function(songNumber, songName, songLength) {
  
      return template;
  };
+
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
 
 var setCurrentAlbum = function(album) {
     
@@ -64,4 +80,15 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
+    
+    var albums = [albumPicasso, albumMarconi, albumBologna]
+    var i = 1;
+    albumImage.addEventListener("click", function(event) {
+        setCurrentAlbum(albums[i]);
+        if (i < albums.length-1) {
+            i++;
+        } else {
+            i = 0;
+        }
+    })
 };
