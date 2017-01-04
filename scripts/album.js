@@ -42,11 +42,11 @@ var createSongRow = function(songNumber, songName, songLength) {
 
 var setCurrentAlbum = function (album) {
     
-    var albumTitle = $('.album-view-title');
-    var albumArtist = $('.album-view-artist');
-    var albumReleaseInfo = $('.album-view-release-info');
-    var albumImage = $('.album-cover-art');
-    var albumSongList = $('.album-view-song-list');
+    var $albumTitle = $('.album-view-title');
+    var $albumArtist = $('.album-view-artist');
+    var $albumReleaseInfo = $('.album-view-release-info');
+    var $albumImage = $('.album-cover-art');
+    var $albumSongList = $('.album-view-song-list');
     
     $albumTitle.text(album.title);
     $albumArtist.text(album.artist);
@@ -54,7 +54,6 @@ var setCurrentAlbum = function (album) {
     $albumImage.attr('src', album.albumArtUrl);
     
     $albumSongList.empty();
-    console.log(albumSongList);
     
     for (var i = 0; i < album.songs.length; i++) {
         var $newRow = createSongRow(i+1, album.songs[i].title, album.songs[i].duration);

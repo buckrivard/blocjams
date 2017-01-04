@@ -22,7 +22,7 @@ var buildCollectionItemTemplate = function () {
 
 $(window).load(function() {
         
-    var $collectionContainer = $('album-covers');
+    var $collectionContainer = $('.album-covers');
     
     $collectionContainer.empty();
     
