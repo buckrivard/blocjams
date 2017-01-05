@@ -40,17 +40,17 @@ var createSongRow = function(songNumber, songName, songLength) {
     var $row = $(template);
     
     var clickHandler = function() {
-        var songNumber = $(this).attr('data-song-number');
+        var songNumber = $(this).find('.song-item-number').attr('data-song-number');
         
         if (currentlyPlayingSong !== null) {
-            var currentlyPlaying = $('.song-item-number[data-song-number=" ' + currentlyPlayingSong + '"]');
-            currentlyPlaying.html(currentlyPlayingSong);
+            var currentlyPlayingCell = $('.song-item-number[data-song-number="' + currentlyPlayingSong + '"]');
+            currentlyPlayingCell.html(currentlyPlayingSong);
         }
         if (currentlyPlayingSong !== songNumber) {
-            $(this).html(pauseButtonTemplate);
+            $(this).find('.song-item-number').html(pauseButtonTemplate);
             currentlyPlayingSong = songNumber;
         } else if (currentlyPlayingSong === songNumber) {
-            $(this).html(playButtonTemplate);
+            $(this).find('.song-item-number').html(playButtonTemplate);
             currentlyPlayingSong = null;
         }
     };
@@ -73,7 +73,7 @@ var createSongRow = function(songNumber, songName, songLength) {
         }
     };
     
-    $row.find('.song-item-number').click(clickHandler);
+    $row.click(clickHandler);
     
     $row.hover(onHover, offHover);
     
