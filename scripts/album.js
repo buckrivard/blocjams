@@ -183,19 +183,21 @@ var currentVolume = 80;
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
+var togglePlayFromPlayerBar = function () {
+    if (currentSoundFile.isPaused()) {
+        getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+        playButtonEl.html(playerBarPauseButton);
+        currentSoundFile.play();
+    } else {
+        getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
+        playButtonEl.html(playerBarPlayButton);
+        currentSoundFile.pause();
+    }
+};
+
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
-    playButtonEl.click(function(){
-        if (currentSoundFile.isPaused()) {
-            getSongNumberCell(currentlyPlayingSongNumber).html(pauseButtonTemplate);
-            playButtonEl.html(playerBarPauseButton);
-            currentSoundFile.play();
-        } else {
-            getSongNumberCell(currentlyPlayingSongNumber).html(playButtonTemplate);
-            playButtonEl.html(playerBarPlayButton);
-            currentSoundFile.pause();
-        }
-    });
+    playButtonEl.click(togglePlayFromPlayerBar);
 });
