@@ -90,7 +90,8 @@ var trackIndex = function(album, song) {
     return album.songs.indexOf(song);
 };
 
-var nextSong = function() {
+var songChange = function(isNext) {
+    if (isNext) {
     var getLastSongNumber = function (index) {
         return index == 0 ? currentAlbum.songs.length : index;
     };
@@ -104,22 +105,8 @@ var nextSong = function() {
     }
     
     setSong(currentSongIndex + 1);
-    
-    //Is there any reason we can't simply call updatePlayerBarSong here?
-    $('.currently-playing .song-name').text(currentSongFromAlbum.title);
-    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-    $('.currently-playing .artist-name').text(currentAlbum.artist); 
-    $('.main-controls .play-pause').html(playerBarPauseButton);
-    
-    var lastSongNumber = getLastSongNumber(currentSongIndex);
-    var $nextSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
-    var $lastSongNumberCell = getSongNumberCell(lastSongNumber);
-    
-    $nextSongNumberCell.html(pauseButtonTemplate);
-    $lastSongNumberCell.html(lastSongNumber);
-};
-
-var previousSong = function() {
+        
+} else {
     var getLastSongNumber = function (index) {
         return index == (currentAlbum.songs.length - 1) ? 1 : index + 2;
     };
@@ -132,11 +119,9 @@ var previousSong = function() {
     }
     
     setSong(currentSongIndex + 1);
+    }
     
-    $('.currently-playing .song-name').text(currentSongFromAlbum.title);
-    $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
-    $('.currently-playing .artist-name').text(currentAlbum.artist);
-    $('.main-controls .play-pause').html(playerBarPauseButton);
+    updatePlayerBarSong();
     
     var lastSongNumber = getLastSongNumber(currentSongIndex);
     var $previousSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
@@ -169,6 +154,10 @@ var $nextButton = $('.main-controls .next');
 
 $(document).ready(function() {
     setCurrentAlbum(albumPicasso);
-    $previousButton.click(previousSong);
-    $nextButton.click(nextSong);
+    $previousButton.click(function() {
+        songChange(false);
+    });
+    $nextButton.click(function(){
+        songChange(true);
+    });
 });
