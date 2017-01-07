@@ -20,10 +20,7 @@ var setVolume = function(volume) {
 var filterTimeCode = function(timeInSeconds) {
     var minutes = Math.floor(parseFloat(timeInSeconds) / 60);
     var seconds = Math.floor(parseFloat(timeInSeconds) % 60);
-    seconds = seconds.toString();
-    if (seconds.length === 1) {
-        seconds = "0" + seconds;
-    }
+    seconds = seconds < 10 ? '0' + seconds : seconds;
     return minutes + ":" + seconds;
 };
 
