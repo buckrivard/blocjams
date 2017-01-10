@@ -140,7 +140,6 @@ var updateSeekBarWhileSongPlays = function () {
             
             updateSeekPercentage($seekBar, seekBarFillRatio);
             setCurrentTimeInPlayerBar(currentSoundFile.getTime());
-            setTotalTimeInPlayerBar(currentSoundFile.getDuration());
         });
     }
 };
@@ -256,6 +255,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
 };
 
 
